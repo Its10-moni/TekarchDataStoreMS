@@ -17,7 +17,7 @@ repositories {
 	mavenCentral()
 }
 
-//bootJar {     archiveFileName = 'my-DataStoreService-App.jar' }
+bootJar {     archiveFileName = 'my-DataStoreService-App.jar' }
 
 dependencies {
 	implementation('org.springframework.boot:spring-boot-starter') {

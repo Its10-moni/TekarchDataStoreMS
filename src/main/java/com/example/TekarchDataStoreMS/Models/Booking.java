@@ -11,7 +11,6 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "Bookings")
-@Component
 @Data
 public class Booking {
 
@@ -20,15 +19,17 @@ public class Booking {
     private Long bookingId;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "user_id")
-    private User userId;
+    @JoinColumn(name = "user_id",nullable = false)
+    private User user;
 
     @ManyToOne
-    @JoinColumn(name = "flight_id",referencedColumnName = "flight_id")
-    private Flight flightId;
+    @JoinColumn(name = "flight_id",nullable = false)
+    private Flight flight;
 
-    @Column(name="status" , nullable = true)
-    private String status; // Status could be "Booked", "Cancelled", etc.
+
+    @Column(name = "status", nullable = true)
+    @Enumerated(EnumType.STRING) // This annotation ensures the enum is stored as a String
+    private Status status;
 
     @Column(name = "created_at",columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     @CreationTimestamp
@@ -37,5 +38,6 @@ public class Booking {
     @Column(name = "updated_at",columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     @UpdateTimestamp
     private LocalDateTime updateAt;
+
 
 }

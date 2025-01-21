@@ -1,4 +1,6 @@
 package com.example.TekarchDataStoreMS.Models;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import jakarta.persistence.GenerationType;
 import lombok.Data;
@@ -11,7 +13,6 @@ import java.time.LocalDateTime;
 
 @Entity
 @Data
-@Component
 @Table(name = "flightservice")
 public class Flight {
     @Id
@@ -19,7 +20,7 @@ public class Flight {
     @Column(name = "flight_id", nullable = true, unique = true)
     private Long flightId;
 
-    @Column(name = "flight_number")
+    @Column(name = "flight_number",unique = true)
     private String flightNumber;
 
     @Column(nullable = true)
@@ -49,7 +50,13 @@ public class Flight {
     @Column(name = "updated_at",columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     @UpdateTimestamp
     private LocalDateTime updateAt;
-
+   /* @JsonCreator
+    public Flight(@JsonProperty("flightId") Long flightId) {
+        this.flightId = flightId;
+    }*/
+   public Flight() {
+       // Default constructor
+   }
 
 
 }

@@ -1,15 +1,17 @@
 package com.example.TekarchDataStoreMS.Models;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 @Entity
 @Data
-@Component
 @Table(name = "userservice")
 public class User {
     @Id
@@ -28,6 +30,20 @@ public class User {
     @Column(name = "updated_at",columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     @UpdateTimestamp
     private LocalDateTime updateAt;
+    public User() {
+        // Default constructor
+    }
+
+  /*  @JsonCreator
+    public User(@JsonProperty("userId") Long userId) {
+        this.userId = userId;
+    }
+
+
+   /* @JsonCreator
+    public static User createUser(@JsonProperty("userId") Long userId) {
+        return new User(userId);
+    }*/
 
 
 }
