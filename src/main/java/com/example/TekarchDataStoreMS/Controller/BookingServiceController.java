@@ -40,6 +40,10 @@ public class BookingServiceController {
     public Booking getBookingsBybookingId(@PathVariable Long bookingId) {
         return bookingServiceRepositories.findBybookingId(bookingId);
     }
+    @PutMapping("/bookings")
+    public Booking updateBooking(@RequestBody Booking booking) {
+        return bookingServiceRepositories.save(booking);
+    }
 
     @PutMapping("/bookings/{bookingId}")
     public Booking updateBookingBybookingId(@PathVariable Long bookingId, @RequestBody Booking booking) {
