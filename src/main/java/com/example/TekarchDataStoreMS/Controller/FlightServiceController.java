@@ -12,7 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/datastore")
 public class FlightServiceController {
@@ -23,7 +23,6 @@ public class FlightServiceController {
     public Flight createFlight(@RequestBody Flight flight) {
         return flightServiceRepositories.save(flight);
     }
-
     @GetMapping("/flights")
     public List<Flight> getFlights() {
         return flightServiceRepositories.findAll();
